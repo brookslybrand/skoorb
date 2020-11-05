@@ -1,8 +1,6 @@
-# v0.1.1 (Thu Nov 05 2020)
+# v0.1.0 (Tue Sep 03 2019)
 
-#### ⚠️ Pushed to `master`
-
-- first commit ([@brookslybrand](https://github.com/brookslybrand))
+- Created first version of the design system, with `Avatar`, `Badge`, `Button`, `Icon` and `Link` components.
 
 #### Authors: 1
 
