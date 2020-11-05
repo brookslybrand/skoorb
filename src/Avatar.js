@@ -13,6 +13,8 @@ export const sizes = {
   teenyTiny: 8,
 };
 
+// this change shouldn't really do anything
+
 const Image = styled.div`
   background: ${(props) => (!props.loading ? "transparent" : color.light)};
   border-radius: 50%;
