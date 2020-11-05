@@ -1,19 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
-import { color, typography } from './shared/styles';
-import { glow } from './shared/animation';
-import { Icon } from './Icon';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
+import { color, typography } from "./shared/styles";
+import { glow } from "./shared/animation";
+import { Icon } from "./Icon";
 
 export const sizes = {
   large: 40,
   medium: 28,
   small: 20,
   tiny: 16,
+  teenyTiny: 8,
 };
 
 const Image = styled.div`
-  background: ${props => (!props.loading ? 'transparent' : color.light)};
+  background: ${(props) => (!props.loading ? "transparent" : color.light)};
   border-radius: 50%;
   display: inline-block;
   vertical-align: top;
@@ -22,31 +23,38 @@ const Image = styled.div`
   height: ${sizes.medium}px;
   width: ${sizes.medium}px;
   line-height: ${sizes.medium}px;
-  ${props =>
-    props.size === 'tiny' &&
+  ${(props) =>
+    props.size === "teenyTiny" &&
+    css`
+      height: ${sizes.teenyTiny}px;
+      width: ${sizes.teenyTiny}px;
+      line-height: ${sizes.teenyTiny}px;
+    `}
+  ${(props) =>
+    props.size === "tiny" &&
     css`
       height: ${sizes.tiny}px;
       width: ${sizes.tiny}px;
       line-height: ${sizes.tiny}px;
     `}
-  ${props =>
-    props.size === 'small' &&
+  ${(props) =>
+    props.size === "small" &&
     css`
       height: ${sizes.small}px;
       width: ${sizes.small}px;
       line-height: ${sizes.small}px;
     `}
-  ${props =>
-    props.size === 'large' &&
+  ${(props) =>
+    props.size === "large" &&
     css`
       height: ${sizes.large}px;
       width: ${sizes.large}px;
       line-height: ${sizes.large}px;
     `}
-  ${props =>
+  ${(props) =>
     !props.src &&
     css`
-      background: ${!props.loading && '#37D5D3'};
+      background: ${!props.loading && "#37D5D3"};
     `}
   img {
     width: 100%;
@@ -72,6 +80,10 @@ const Initial = styled.div`
   text-align: center;
   font-size: ${typography.size.s2}px;
   line-height: ${sizes.medium}px;
+  ${props => props.size === "teenyTiny" && css`
+    font-size: ${typography.size.s1 - 3}px;
+    line-height: ${sizes.teenyTiny}px;
+  `}
   ${props => props.size === "tiny" && css`
     font-size: ${typography.size.s1 - 2}px;
     line-height: ${sizes.tiny}px;
@@ -96,12 +108,12 @@ export function Avatar({ loading, username, src, size, ...props }) {
   const a11yProps = {};
 
   if (loading) {
-    a11yProps['aria-busy'] = true;
-    a11yProps['aria-label'] = 'Loading avatar ...';
+    a11yProps["aria-busy"] = true;
+    a11yProps["aria-label"] = "Loading avatar ...";
   } else if (src) {
     avatarFigure = <img src={src} alt={username} />;
   } else {
-    a11yProps['aria-label'] = username;
+    a11yProps["aria-label"] = username;
     avatarFigure = (
       <Initial size={size} aria-hidden="true">
         {username.substring(0, 1)}
@@ -118,7 +130,7 @@ export function Avatar({ loading, username, src, size, ...props }) {
 
 Avatar.propTypes = {
   /**
-   Use the loading state to indicate that the data Avatar needs is still loading. 
+   Use the loading state to indicate that the data Avatar needs is still loading.
   */
   loading: PropTypes.bool,
   /**
@@ -130,14 +142,14 @@ Avatar.propTypes = {
   */
   src: PropTypes.string,
   /**
-   Avatar comes in four sizes. In most cases, you’ll be fine with `medium`. 
+   Avatar comes in four sizes. In most cases, you’ll be fine with `medium`.
   */
   size: PropTypes.oneOf(Object.keys(sizes)),
 };
 
 Avatar.defaultProps = {
   loading: false,
-  username: 'loading',
+  username: "loading",
   src: null,
-  size: 'medium',
+  size: "medium",
 };
