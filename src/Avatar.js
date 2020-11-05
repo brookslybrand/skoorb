@@ -10,7 +10,6 @@ export const sizes = {
   medium: 28,
   small: 20,
   tiny: 16,
-  teenyTiny: 8,
 };
 
 const Image = styled.div`
@@ -23,13 +22,6 @@ const Image = styled.div`
   height: ${sizes.medium}px;
   width: ${sizes.medium}px;
   line-height: ${sizes.medium}px;
-  ${(props) =>
-    props.size === "teenyTiny" &&
-    css`
-      height: ${sizes.teenyTiny}px;
-      width: ${sizes.teenyTiny}px;
-      line-height: ${sizes.teenyTiny}px;
-    `}
   ${(props) =>
     props.size === "tiny" &&
     css`
@@ -80,10 +72,6 @@ const Initial = styled.div`
   text-align: center;
   font-size: ${typography.size.s2}px;
   line-height: ${sizes.medium}px;
-  ${props => props.size === "teenyTiny" && css`
-    font-size: ${typography.size.s1 - 3}px;
-    line-height: ${sizes.teenyTiny}px;
-  `}
   ${props => props.size === "tiny" && css`
     font-size: ${typography.size.s1 - 2}px;
     line-height: ${sizes.tiny}px;
